@@ -19,6 +19,8 @@ COPY config/php.ini /etc/php7/conf.d/custom.ini
 # Configure supervisord
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
+
+
 # Setup document root
 RUN mkdir -p /app/public
 
@@ -28,15 +30,15 @@ RUN chown -R nobody.nobody /app/public && \
   chown -R nobody.nobody /var/lib/nginx && \
   chown -R nobody.nobody /var/log/nginx
 
+
 # Make the document root a volume
-VOLUME /app/public
+VOLUME /app
 
 # Switch to use a non-root user from here on
 USER nobody
 
 # Add application
 WORKDIR /app/public
-COPY --chown=nobody src/ /app/public/
 
 # Expose the port nginx is reachable on
 EXPOSE 8080

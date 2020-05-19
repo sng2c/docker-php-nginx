@@ -39,6 +39,7 @@ USER nobody
 
 # Add application
 WORKDIR /app/public
+COPY --chown=nobody src/ /app/public/
 
 # Expose the port nginx is reachable on
 EXPOSE 8080
